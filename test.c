@@ -23,9 +23,11 @@ int main(int argc, char *argv[])
     Method *meth = method_init();
     URL *url = URL_init();
     Req *req = Req_init(input, url, meth);
-    url_parser(url);
-    url_tostring(url);
 
+    req_parser(req);
+    printf("parsed!\n");
+
+    req_tostring(req);
 
     return 0;
 }

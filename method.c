@@ -12,14 +12,15 @@ Method *method_init()
 }
 void method_parser(Method *meth, uint8_t *token)
 {
-    if(strcmp("GET", token))
+    if(strcmp("GET", token) == 0) {
         meth->meth = GET;
-    else if (strcmp("POST", token))
+    } else if (strcmp("POST", token) == 0) {
             meth->meth = POST;
-    else {
+    } else {
         fprintf(stderr, "invalid method\n");
         exit(1);
     }
+    meth->check = 1;
 }
 
 void method_tostring(Method *meth)

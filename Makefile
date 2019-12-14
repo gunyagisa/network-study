@@ -10,8 +10,7 @@ run: server
 clean:
 	rm *.o server
 
-test:
-	make run
-	make clean
+test: url.o request.o method.o test.c
+	gcc *.o test.c
 
 .PHONY: run clean test

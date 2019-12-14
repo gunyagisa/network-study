@@ -9,6 +9,8 @@ Req *Req_init(const uint8_t *request, URL *url, Method *meth)
 {
     Req *req = (Req *) malloc(sizeof(Req));
     size_t size = strlen(request);
+    req->request = (uint8_t *) malloc(size);
+    strcpy(req->request, request);
     req->req_url = url;
     req->req_method = meth;
     req->check = 0;
@@ -25,6 +27,7 @@ void req_parser(Req *req)
     token = strtok_r(tmp, " ", &saveptr);
     method_parser(req->req_method, token);
 
+    req->req_url->url = malloc(strlen(saveptr));
     strcpy(req->req_url->url, saveptr);
     url_parser(req->req_url);
 

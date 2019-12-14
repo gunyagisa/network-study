@@ -4,8 +4,18 @@
 #include <string.h>
 #include "url.h"
 
+URL *URL_init()
+{
+    URL *url = (URL *) malloc(sizeof(URL));
+    url->path = NULL;
+    url->host = NULL;
+    url->check = 0;
+    return url;
+}
+
 void url_parser(URL *u)
 {
+    printf("%s\n", u->url);
     uint8_t tmp[strlen(u->url)];
     strcpy((char *)tmp, (char *)u->url);
     char *saveptr, *token;
@@ -37,11 +47,3 @@ void url_tostring(URL *url)
     printf("path: %s\n", url->path);
 }
 
-URL *URL_init()
-{
-    URL *url = (URL *) malloc(sizeof(URL));
-    url->path = NULL;
-    url->host = NULL;
-    url->check = 0;
-    return url;
-}
