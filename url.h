@@ -1,6 +1,8 @@
 #ifndef _URLPARSER_H_
 #define _URLPARSER_H_
 
+#include <stdint.h>
+
 typedef struct URL {
     uint8_t *url;
     uint8_t *scheme;
@@ -12,6 +14,6 @@ typedef struct URL {
 
 void url_parser(URL *u);
 void url_tostring(URL *url);
-URL *URL_init(const uint8_t *str, Req *req);
+URL *URL_init();
 
 #endif

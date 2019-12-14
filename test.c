@@ -20,8 +20,9 @@ int main(int argc, char *argv[])
     }
 
     uint8_t *input = argv[1];
-    Req *req = Req_init();
-    URL *url = URL_init(input, req);
+    Method *meth = method_init();
+    URL *url = URL_init();
+    Req *req = Req_init(input, url, meth);
     url_parser(url);
     url_tostring(url);
 

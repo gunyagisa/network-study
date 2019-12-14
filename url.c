@@ -1,3 +1,9 @@
+#include <stdio.h>
+#include <stdint.h>
+#include <stdlib.h>
+#include <string.h>
+#include "url.h"
+
 void url_parser(URL *u)
 {
     uint8_t tmp[strlen(u->url)];
@@ -16,7 +22,7 @@ void url_parser(URL *u)
     strcpy(u->path, saveptr);
 
     //check
-    url->check = 1;
+    u->check = 1;
 }
 
 void url_tostring(URL *url)
@@ -26,17 +32,14 @@ void url_tostring(URL *url)
         exit(1);
     }
     printf("url: %s\n", url->url);
-    printf("Scheme: %s\n", url->scheme);
+    printf("scheme: %s\n", url->scheme);
     printf("port: %d\n", url->port);
     printf("path: %s\n", url->path);
 }
 
-URL *URL_init(const uint8_t *str)
+URL *URL_init()
 {
     URL *url = (URL *) malloc(sizeof(URL));
-    size_t size = strlen((char *)str);
-    url->url = (uint8_t *) malloc(size);
-    strcpy(url->url, str);
     url->path = NULL;
     url->host = NULL;
     url->check = 0;
