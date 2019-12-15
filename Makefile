@@ -8,7 +8,7 @@ run: server
 	./server
 
 clean:
-	rm *.o server
+	rm -f *.o server
 
 test: url.o request.o method.o test.c
 	gcc *.o test.c
