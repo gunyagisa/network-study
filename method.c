@@ -10,6 +10,12 @@ Method *method_init()
     meth->check = 0;
     return meth;
 }
+
+void method_free(Method *meth)
+{
+    free(meth);
+}
+
 void method_parser(Method *meth, uint8_t *token)
 {
     if(strcmp("GET", token) == 0) {

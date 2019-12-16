@@ -13,6 +13,14 @@ URL *URL_init()
     return url;
 }
 
+void url_free(URL *url)
+{
+    free(url->url);
+    free(url->scheme);
+    free(url->host);
+    free(url->path);
+}
+
 void url_parser(URL *u)
 {
     printf("%s\n", u->url);
@@ -20,16 +28,23 @@ void url_parser(URL *u)
     strcpy((char *)tmp, (char *)u->url);
     char *saveptr, *token;
 
+    //scheme parse
     token = strtok_r((char *)tmp, ":", &saveptr);
     u->scheme = malloc(strlen(token));
     strcpy(u->scheme, token);
     
+    //host parse
     token = strtok_r(NULL, "/", &saveptr);
     u->host = malloc(strlen(token));
     strcpy(u->host, token);
 
-    u->path = malloc((uint8_t *) saveptr - tmp + 1);
-    strcpy(u->path, saveptr);
+    //path parse
+    token = strtok_r(NULL, ":", &saveptr);
+    u->path = malloc(strlen(token));
+    strcpy(u->path, token);
+
+    //port parse
+    u->port = atoi(saveptr);
 
     //check
     u->check = 1;

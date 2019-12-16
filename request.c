@@ -3,7 +3,6 @@
 #include <stdint.h>
 #include <stdlib.h>
 #include "request.h"
-#include "url.h"
 
 Req *Req_init(const uint8_t *request, URL *url, Method *meth)
 {
@@ -15,6 +14,14 @@ Req *Req_init(const uint8_t *request, URL *url, Method *meth)
     req->req_method = meth;
     req->check = 0;
     return req;
+}
+
+void req_free(Req *req)
+{
+    free(req->request);
+    url_free(req->req_url);
+    method_free(req->req_method);
+    free(req);
 }
 
 void req_parser(Req *req)

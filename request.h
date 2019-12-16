@@ -14,6 +14,7 @@ typedef struct Req {
 } Req;
 
 Req *Req_init(const uint8_t *request, URL *url, Method *meth);
+void req_free(Req *req);
 void req_parser(Req *req);
 void req_tostring(Req *req);
 

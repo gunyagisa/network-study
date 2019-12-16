@@ -29,6 +29,8 @@ int main(int argc, char *argv[])
 
     req_tostring(req);
 
+    req_free(req);
+
     return 0;
 }
     

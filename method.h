@@ -8,6 +8,7 @@ typedef struct Method {
 } Method;
 
 Method *method_init();
+void method_free(Method *meth);
 void method_parser(Method *meth, uint8_t *token);
 void method_tostring(Method *meth);
 

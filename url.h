@@ -15,5 +15,6 @@ typedef struct URL {
 void url_parser(URL *u);
 void url_tostring(URL *url);
 URL *URL_init();
+void url_free(URL *url);
 
 #endif
